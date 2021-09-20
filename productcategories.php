@@ -156,6 +156,8 @@ class ProductCategories extends Module implements WidgetInterface
         $first_cat_products = $this->getProducts( $first_cat_id );
         $second_cat_id = $this->getConfigFieldsValues()['SECOND_CAT_ID'];
         $second_cat_products = $this->getProducts( $second_cat_id );
+        $first_category = new Category ($first_cat_id,Context::getContext()->language->id);
+        $second_category = new Category ($second_cat_id,Context::getContext()->language->id);
 
         $variables = array();
 
@@ -163,6 +165,7 @@ class ProductCategories extends Module implements WidgetInterface
             $variables['categories']['fitstCategory'] = array(
                 'products' => $first_cat_products,
                 'categoryLink' => Context::getContext()->link->getCategoryLink($this->getConfigFieldsValues()['FIRST_CAT_ID']),
+                'categoryName' => $first_category->name
             );
         }
 
@@ -170,6 +173,7 @@ class ProductCategories extends Module implements WidgetInterface
             $variables['categories']['secondCategory'] = array(
                 'products' => $second_cat_products,
                 'categoryLink' => Context::getContext()->link->getCategoryLink($this->getConfigFieldsValues()['SECOND_CAT_ID']),
+                'categoryName' => $second_category->name
             );
         }
 
